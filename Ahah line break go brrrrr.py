@@ -178,38 +178,41 @@ generate_random_directory("random_dir", 10, 100000000)
 
 #####################################################
 
+#       GMAIL GET NUMBER OF UNREAD EMAIL FUNCTION
+#
+# def get_unread_email_count(user_id):
+#     # Authenticate with the Gmail API using OAuth 2.0
+#     credentials = Credentials.from_authorized_user_info(info=user_info)
+#     service = build('gmail', 'v1', credentials=credentials)
 
-def get_unread_email_count(user_id):
-    # Authenticate with the Gmail API using OAuth 2.0
-    credentials = Credentials.from_authorized_user_info(info=user_info)
-    service = build('gmail', 'v1', credentials=credentials)
+#     # Use the Gmail API to get the list of emails in the user's inbox
+#     inbox = service.users().messages().list(
+#         userId=user_id, labelIds=['INBOX']).execute()
+#     messages = inbox.get('messages', [])
 
-    # Use the Gmail API to get the list of emails in the user's inbox
-    inbox = service.users().messages().list(
-        userId=user_id, labelIds=['INBOX']).execute()
-    messages = inbox.get('messages', [])
+#     # Count the number of unread emails in the user's inbox
+#     unread_count = 0
+#     for message in messages:
+#         msg = service.users().messages().get(
+#             userId=user_id, id=message['id']).execute()
+#         if not msg['labelIds'].__contains__('UNREAD'):
+#             unread_count += 1
 
-    # Count the number of unread emails in the user's inbox
-    unread_count = 0
-    for message in messages:
-        msg = service.users().messages().get(
-            userId=user_id, id=message['id']).execute()
-        if not msg['labelIds'].__contains__('UNREAD'):
-            unread_count += 1
-
-    return unread_count
+#     return unread_count
 
 
-user_id = 'example@gmail.com'
-user_info = {
-    'access_token': 'ACCESS_TOKEN',
-    'client_id': 'CLIENT_ID',
-    'client_secret': 'CLIENT_SECRET',
-    'refresh_token': 'REFRESH_TOKEN',
-    'token_expiry': 'TOKEN_EXPIRY',
-    'token_uri': 'TOKEN_URI',
-    'user_agent': 'USER_AGENT',
-    'revoke_uri': 'REVOKE_URI'
-}
-unread_count = get_unread_email_count(user_id)
-print(f'Number of unread emails: {unread_count}')
+#       CALL UNREAD GMAIL FUNCTION
+#
+# user_id = 'example@gmail.com'
+# user_info = {
+#     'access_token': 'ACCESS_TOKEN',
+#     'client_id': 'CLIENT_ID',
+#     'client_secret': 'CLIENT_SECRET',
+#     'refresh_token': 'REFRESH_TOKEN',
+#     'token_expiry': 'TOKEN_EXPIRY',
+#     'token_uri': 'TOKEN_URI',
+#     'user_agent': 'USER_AGENT',
+#     'revoke_uri': 'REVOKE_URI'
+# }
+# unread_count = get_unread_email_count(user_id)
+# print(f'Number of unread emails: {unread_count}')
